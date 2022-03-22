@@ -1,5 +1,7 @@
 import React from "react";
 import "./Header.css";
+import { Link } from "react-router-dom";
+import { useStateValue } from "./StateProvider";
 // Icons
 import SearchIcon from "@material-ui/icons/Search";
 import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
@@ -7,6 +9,7 @@ import ShoppingBasketIcon from "@material-ui/icons/ShoppingBasket";
 import AmazonLogo from "./assets/images/AmazonLogo.png";
 
 function Header() {
+  const [{ basket, user }, dispatch] = useStateValue();
   return (
     <div className="header">
       <img className="header__logo" src={AmazonLogo} />
@@ -34,7 +37,9 @@ function Header() {
 
         <div className="header__optionBasket">
           <ShoppingBasketIcon />
-          <span className="header__optionLineTwo header__basketCount">0</span>
+          <span className="header__optionLineTwo header__basketCount">
+            {basket?.length}
+          </span>
         </div>
       </div>
     </div>
